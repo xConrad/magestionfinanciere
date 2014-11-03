@@ -30,7 +30,7 @@
 					<li><a href="#">French</a></li>
 				</ul>
 			</li>
-				 <li><a href="http://localhost/magestionfinanciere/users/add">Register</a></li>
+				 <li><?php echo $this->Html->Link('Register', array('controller' => 'Users', 'action' => 'add'))?></li>
 				
 				<?php if(!$this->Session->check('Auth.User')) {
                          ?><li><?php echo $this->Html->Link('Login', array('controller' => 'Users', 'action' => 'login'))?></li><?php
