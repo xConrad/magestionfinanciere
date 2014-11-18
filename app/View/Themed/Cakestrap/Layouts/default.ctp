@@ -50,7 +50,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div class='col-sm-2'>
 		</div>
 		<div class='col-sm-8'>
-			<div id="header" class="container">
+			<div id="header">
 				<?php echo $this->element('menu/top_menu'); ?>
 			</div><!-- /#header .container -->
 		</div>
@@ -69,25 +69,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				</div><!-- /#content .container -->
 			</div>	
 			<div class='col-sm-2'>
-				<div id="right" class="container">
-				<?php echo $this->element('menu/side_menu'); ?>
+				<div>
+				<?php 
+					if($this->Session->read('Auth.User')){
+						echo $this->element('menu/side_menu');
+					}
+				?>
 				</div><!-- /#header .container -->
 			</div>
 		</div>
 		
-			<div id="footer" class="container">
-				<?php //Silence is golden ?>
-			</div><!-- /#footer .container -->
 			
 		</div><!-- /#main-container -->
-		
-		<div class="container">
-			<div class="well well-sm">
-				<small>
-					<?php echo $this->element('sql_dump'); ?>
-				</small>
-			</div><!-- /.well well-sm -->
-		</div><!-- /.container -->
 	</body>
 
 </html>

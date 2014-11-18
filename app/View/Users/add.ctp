@@ -16,13 +16,13 @@
 				<fieldset>
 
 					<div class="form-group">
-						<?php echo $this->Form->input('username', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('username', array('class' => 'form-control', 'style' => 'width:300px; height:34px;')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('password', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('password', array('class' => 'form-control', 'style' => 'width:300px; height:34px;')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('email', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('email', array('class' => 'form-control', 'style' => 'width:300px; height:34px;')); ?>
 					</div><!-- .form-group -->
 					
 

@@ -38,11 +38,11 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'managements',
+                'controller' => 'Managements',
                 'action' => 'home'
             ),
             'logoutRedirect' => array(
-                'controller' => 'managements',
+                'controller' => 'Managements',
                 'action' => 'home',
                 'home'
             ),

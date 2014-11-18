@@ -46,12 +46,12 @@ class BillsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($weekyear = null, $cTitle = null) {
 		if ($this->request->is('post')) {
 			$this->Bill->create();
 			if ($this->Bill->save($this->request->data)) {
 				$this->Session->setFlash(__('The bill has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 			} else {
 				$this->Session->setFlash(__('The bill could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -59,6 +59,7 @@ class BillsController extends AppController {
 		$categories = $this->Bill->Category->find('list');
 		$users = $this->Bill->User->find('list');
 		$this->set(compact('categories', 'users'));
+		$this->set('caTitle', $cTitle);
 	}
 
 /**
@@ -102,15 +103,15 @@ class BillsController extends AppController {
 			throw new MethodNotAllowedException();
 		}
 		$this->Bill->id = $id;
-		if (!$this->Bill->exists()) {
+			if (!$this->Bill->exists()) {
 			throw new NotFoundException(__('Invalid bill'));
 		}
 		if ($this->Bill->delete()) {
 			$this->Session->setFlash(__('Bill deleted'), 'flash/success');
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('controller' => 'Managements', 'action' => 'home'));
 		}
 		$this->Session->setFlash(__('Bill was not deleted'), 'flash/error');
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'Managements', 'action' => 'home'));
 	}
 /**
  * admin_index method

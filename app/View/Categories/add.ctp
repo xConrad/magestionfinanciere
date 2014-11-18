@@ -1,5 +1,45 @@
 
 <div id="page-container" class="row">
-	<?php echo 'DANS LA VUE ADD' ?>
+
+	<div id="sidebar" class="col-sm-4">
 	
+	</div><!-- /#sidebar .col-sm-3 -->
+	
+	<div id="page-content" class="col-sm-4">
+
+		<h2><?php echo __('Register category'); ?></h2>
+
+		<div class="users form">
+		
+			<?php $uid = $this->Session->read('Auth.User.id'); ?>
+		
+			<?php echo $this->Form->create('Category', array('role' => 'form')); ?>
+
+				<fieldset>
+					<div class="form-group">
+						<?php echo $this->Form->input('title', array('class' => 'form-control', 'style' => 'width:400px; height:34px;')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->hidden('user_id', array('class' => 'form-control', 'default' => $uid)); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('price', array('class' => 'form-control', 'style' => 'width:400px; height:34px;')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->hidden('weekyear', array('class' => 'form-control', 'default' => $week)); ?>
+					</div><!-- .form-group -->
+					
+					<?php echo $this->Form->submit('Submit', array('class' => 'btn btn-large btn-primary')); ?>
+
+				</fieldset>
+
+			<?php echo $this->Form->end(); ?>
+
+		</div><!-- /.form -->
+			
+	</div><!-- /#page-content .col-sm-9 -->
+	<div id="sidebar" class="col-sm-4">
+	
+	</div><!-- /#sidebar .col-sm-3 -->
+
 </div><!-- /#page-container .row-fluid -->

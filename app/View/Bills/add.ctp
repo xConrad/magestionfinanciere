@@ -3,18 +3,6 @@
 
 	<div id="sidebar" class="col-sm-3">
 		
-		<div class="actions">
-		
-			<ul class="list-group">
-				<li class="list-group-item"><?php echo $this->Html->link(__('List Bills'), array('action' => 'index')); ?></li>
-				<li class="list-group-item"><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
-				<li class="list-group-item"><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
-				<li class="list-group-item"><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-				<li class="list-group-item"><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-			</ul><!-- /.list-group -->
-		
-		</div><!-- /.actions -->
-		
 	</div><!-- /#sidebar .col-sm-3 -->
 	
 	<div id="page-content" class="col-sm-9">
@@ -23,27 +11,25 @@
 
 		<div class="bills form">
 		
+			<?php $uid = $this->Session->read('Auth.User.id');?>
+		
 			<?php echo $this->Form->create('Bill', array('role' => 'form')); ?>
 
 				<fieldset>
-
 					<div class="form-group">
-						<?php echo $this->Form->input('category_id', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->hidden('category_id', array('class' => 'form-control', 'default' => $caTitle)); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->hidden('user_id', array('class' => 'form-control', 'default' => $uid)); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('deleted', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('title', array('class' => 'form-control', 'style' => 'width:400px; height:34px;')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('title', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('date', array('class' => 'form-control', 'style' => 'width:400px; height:34px;')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('date', array('class' => 'form-control')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('cost', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('cost', array('class' => 'form-control', 'style' => 'width:400px; height:34px;')); ?>
 					</div><!-- .form-group -->
 
 					<?php echo $this->Form->submit('Submit', array('class' => 'btn btn-large btn-primary')); ?>

@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller', 'Bills');
+
 /**
  * Categories Controller
  *
@@ -47,18 +49,19 @@ class CategoriesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($weekyear = null) {
 		if ($this->request->is('post')) {
 			$this->Category->create();
 			if ($this->Category->save($this->request->data)) {
 				$this->Session->setFlash(__('The category has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
+			$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 			} else {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 		$users = $this->Category->User->find('list');
 		$this->set(compact('users'));
+		$this->set('week', $weekyear);
 	}
 
 /**
@@ -87,7 +90,6 @@ class CategoriesController extends AppController {
 		$users = $this->Category->User->find('list');
 		$this->set(compact('users'));
 	}
-
 /**
  * delete method
  *
@@ -96,7 +98,9 @@ class CategoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $weekyear = null) {
+
+		$this->loadModel('Bill');
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -106,10 +110,13 @@ class CategoriesController extends AppController {
 		}
 		if ($this->Category->delete()) {
 			$this->Session->setFlash(__('Category deleted'), 'flash/success');
-			$this->redirect(array('action' => 'index'));
+			
+			$this->Bill->deleteAll(array('Bill.category_id' => $id));
+			
+			$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 		}
 		$this->Session->setFlash(__('Category was not deleted'), 'flash/error');
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 	}
 /**
  * admin_index method
