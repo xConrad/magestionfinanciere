@@ -69,15 +69,15 @@ class BillsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($weekyear = null, $id = null, $cTitle = null) {
         $this->Bill->id = $id;
 		if (!$this->Bill->exists($id)) {
 			throw new NotFoundException(__('Invalid bill'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->request->is('put')) {
 			if ($this->Bill->save($this->request->data)) {
 				$this->Session->setFlash(__('The bill has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 			} else {
 				$this->Session->setFlash(__('The bill could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -88,6 +88,7 @@ class BillsController extends AppController {
 		$categories = $this->Bill->Category->find('list');
 		$users = $this->Bill->User->find('list');
 		$this->set(compact('categories', 'users'));
+		$this->set('caTitle', $cTitle);
 	}
 
 /**
@@ -98,7 +99,7 @@ class BillsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($weekyear = null, $id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -108,10 +109,10 @@ class BillsController extends AppController {
 		}
 		if ($this->Bill->delete()) {
 			$this->Session->setFlash(__('Bill deleted'), 'flash/success');
-			$this->redirect(array('controller' => 'Managements', 'action' => 'home'));
+			$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 		}
 		$this->Session->setFlash(__('Bill was not deleted'), 'flash/error');
-		$this->redirect(array('controller' => 'Managements', 'action' => 'home'));
+		$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 	}
 /**
  * admin_index method

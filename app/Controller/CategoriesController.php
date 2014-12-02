@@ -71,15 +71,15 @@ class CategoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($weekyear = null, $id = null) {
         $this->Category->id = $id;
 		if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Invalid category'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->request->is('put')) {
 			if ($this->Category->save($this->request->data)) {
 				$this->Session->setFlash(__('The category has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'Managements', 'action' => 'index', $weekyear));
 			} else {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -89,6 +89,7 @@ class CategoriesController extends AppController {
 		}
 		$users = $this->Category->User->find('list');
 		$this->set(compact('users'));
+		$this->set('week', $weekyear);
 	}
 /**
  * delete method
@@ -98,7 +99,7 @@ class CategoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null, $weekyear = null) {
+	public function delete($weekyear = null, $id = null) {
 
 		$this->loadModel('Bill');
 		if (!$this->request->is('post')) {

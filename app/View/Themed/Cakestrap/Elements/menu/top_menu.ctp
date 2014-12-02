@@ -6,21 +6,20 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button><!-- /.navbar-toggle -->
-		<?php echo $this->Html->Link('MaGFinanciere', '', array('class' => 'navbar-brand')); ?>
+		<?php echo $this->Html->Link('MaGFinanciere', array('controller' => 'Managements', 'action' => 'home'), array('class' => 'navbar-brand')); ?>
 	</div><!-- /.navbar-header -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
-                        <li><a href="#">Monthly</a></li>
-                        <li><a href="#">Report</a></li>
-                        <li><a href="#">Support</a></li>
+                        <li><?php echo $this->Html->Link('Rapport Categorie', array('controller' => 'Managements', 'action' => 'categorie')); ?></li>
+                        <li><?php echo $this->Html->Link('Rapport Facture', array('controller' => 'Managements', 'action' => 'bill')); ?></li>
+                        <li><?php echo $this->Html->Link('Rapport Total', array('controller' => 'Managements', 'action' => 'total')); ?></li>
                         <li><a></a></li><li><a></a></li>
                         <li><a></a></li><li><a></a></li>
                         <li><a></a></li><li><a></a></li>
                         <li><a></a></li><li><a></a></li>
                         <li><a></a></li><li><a></a></li>
                         <li><a></a></li><li><a></a></li>
-                        <li><a></a></li><li><a></a></li>
-                        <li><a></a></li><li><a></a></li>
+
 
                         
 			<li class="dropdown">
