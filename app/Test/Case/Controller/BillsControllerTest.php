@@ -61,6 +61,9 @@ class BillsControllerTest extends ControllerTestCase {
  */
 	public function testDelete() {
 		$this->markTestIncomplete('testDelete not implemented.');
+		$ var billToDelete;
+		
+		
 	}
 
 /**

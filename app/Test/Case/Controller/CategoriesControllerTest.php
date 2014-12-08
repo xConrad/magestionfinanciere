@@ -6,17 +6,35 @@ App::uses('CategoriesController', 'Controller');
  *
  */
 class CategoriesControllerTest extends ControllerTestCase {
+	public $fixtures = array(
+		'app.category',
+		'app.user',
+		'app.bill'
+	);
 
 /**
  * Fixtures
  *
  * @var array
  */
-	public $fixtures = array(
-		'app.category',
-		'app.user',
-		'app.bill'
-	);
+ 
+	public $deleteTest;
+	public $boolean;
+ 
+	
+	public function setUp(){
+		$this->deleteTest = new CategoriesController(114,1);
+	}
+	
+	public function testDelete() {
+		//$this->markTestIncomplete('testDelete not implemented.');
+		
+		$weekyear = $this->deleteTest->getWeakyear();
+		$leId = $this->deleteTest->getId();
+		if($weekyear == 114 && $ $leId == 1 ){
+		  $boolean = true;
+		}
+	}
 
 /**
  * testIndex method
@@ -59,9 +77,6 @@ class CategoriesControllerTest extends ControllerTestCase {
  *
  * @return void
  */
-	public function testDelete() {
-		$this->markTestIncomplete('testDelete not implemented.');
-	}
 
 /**
  * testAdminIndex method
